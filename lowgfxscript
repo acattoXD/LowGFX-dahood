@@ -2,6 +2,35 @@ pcall(set_fps_cap, 9999)
 pcall(setfpscap, 9999)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(203, 38, 200085)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/lerkermer/lua-projects/master/SuperCustomServerCrasher'))()
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+settings().Physics.PhysicsEnvironmentalThrottle = 1
+settings().Rendering.QualityLevel = 'Level01'
+for i,v in pairs(game:GetDescendants()) do
+    if v:IsA("Part") then
+        v.Material = Enum.Material.Pavement
+        v.Transparency = 1
+    elseif v:IsA("Decal") then
+        v:Destroy()
+    elseif v:IsA("Texture") then
+        v:Destroy()
+    elseif v:IsA("MeshPart") then
+        v.TextureID = 0
+        v.Transparency = 1
+    elseif v.Name == "Terrian" then
+        v.WaterReflectace = 1
+        v.WaterTransparency = 1
+    elseif v:IsA("SpotLight") then
+        v.Range = 0
+        v.Enabled = false
+    elseif v:IsA("WedgePart") then
+        v.Transparency = 1
+    elseif v:IsA("UnionOperation") then
+        v.Transparency = 1
+    end
+end
 local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
 local g = game
 local w = g.Workspace
